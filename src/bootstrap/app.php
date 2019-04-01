@@ -14,9 +14,9 @@ $config['db']['user'] = "root";
 $config['db']['pass'] = "root";
 $config['db']['dbname'] = "susu";
 
-$user = new \App\Models\User();
-var_dump($user);
-die();
+//$user = new \App\Models\User();
+//var_dump($user);
+//die();
 
 $app = new \Slim\App(['settings' => $config]);
 $container = $app->getContainer();
@@ -46,6 +46,10 @@ $container['db'] = function ($c) {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
+};
+
+$container["HomeController"] = function ($container){
+    return new App\controllers\HomeController($container);
 };
 
 require  __DIR__ . '/../app/route.php';
