@@ -30,7 +30,21 @@ $container['environment'] = function () {
     return new Slim\Http\Environment($_SERVER);
 };
 
-$container['view'] = new \Slim\Views\PhpRenderer("templates/");
+//$container['view'] = new \Slim\Views\PhpRenderer("templates/");
+// Register component on container
+$container['view'] = function ($container) {
+    $view = new \Slim\Views\Twig(__DIR__ . '/../resources/views/', [
+//        'cache' => 'path/to/cache'
+        'cache' => false
+    ]);
+
+    // Instantiate and add Slim specific extension
+    $router = $container->get('router');
+    $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
+    $view->addExtension(new Slim\Views\TwigExtension($router, $uri));
+
+    return $view;
+};
 
 $container['logger'] = function ($c) {
     $logger = new \Monolog\Logger('my_logger');

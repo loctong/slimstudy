@@ -17,7 +17,7 @@ class HomeController extends BaseController
     function index($request, $response)
     {
         $this->container->logger->addInfo("HomeController:index()");
-        return $this->container->view->render($response, "index.phtml");
+        return $this->container->view->render($response, "home.twig");
     }
 
 }
