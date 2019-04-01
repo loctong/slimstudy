@@ -1,13 +1,16 @@
 <?php
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
 
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+
+include('middleware/Auth.php');
+use App\middleware;
 require '../vendor/autoload.php';
 
 $config['displayErrorDetails'] = true;
-$config['db']['host']   = "localhost";
-$config['db']['user']   = "root";
-$config['db']['pass']   = "root";
+$config['db']['host'] = "localhost";
+$config['db']['user'] = "root";
+$config['db']['pass'] = "root";
 $config['db']['dbname'] = "susu";
 
 
@@ -25,13 +28,19 @@ $container['environment'] = function () {
 
 $container['view'] = new \Slim\Views\PhpRenderer("templates/");
 
-$container['logger'] = function($c) {
+$container['logger'] = function ($c) {
     $logger = new \Monolog\Logger('my_logger');
     $file_handler = new \Monolog\Handler\StreamHandler("../logs/app.log");
     $logger->pushHandler($file_handler);
     return $logger;
 };
 
+// Auth middleware
+
+// Auth middleware
+$container['Auth'] = function ($c) {
+    return new App\middleware\Auth($c->get('router'));
+};
 $container['db'] = function ($c) {
     $db = $c['settings']['db'];
     $pdo = new PDO('mysql:host=' . $db['host'] . ';dbname=' . $db['dbname'],
@@ -46,6 +55,16 @@ $app->get('/', function (Request $request, Response $response) {
     $response = $this->view->render($response, "index.phtml");
     return $response;
 });
+
+$app->get('/loginPage', function (Request $request, Response $response) {
+    $this->logger->addInfo("Loading Login Page");
+    $response = $this->view->render($response, "login.phtml");
+
+    return $response;
+});
+
+
+
 
 $app->run();
 
