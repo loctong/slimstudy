@@ -17,6 +17,9 @@ class HomeController extends BaseController
     function index($request, $response)
     {
         $this->container->logger->addInfo("HomeController:index()");
+//        $user = $this->container->db->table("users")->find(1);
+//        var_dump($user->email);
+        die();
         return $this->container->view->render($response, "home.twig");
     }
 
