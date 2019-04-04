@@ -6,7 +6,7 @@ $(document).ready(function () {
         fixHeaderLogic();
         srollUpLogic();
         menuLogic();
-        sliderLogc();
+        // sliderLogic();
     }
 
     function fixHeaderLogic() {
@@ -53,7 +53,7 @@ $(document).ready(function () {
         });
     }
 
-    function sliderLogc() {
+    function sliderLogic() {
         // Slide Logic start
         var jssor_1_options = {
             $AutoPlay: 0,

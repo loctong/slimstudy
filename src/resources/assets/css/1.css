@@ -1,7 +1,7 @@
-/* body {
-    font-family: "Poppins", sans-serif;
-    font-size: 14px;
-} */
+/* body {*/
+/*    font-family: "Poppins", sans-serif;*/
+/*    font-size: 14px;*/
+/*} */
 /* TopHeader Start */
 .header-area .top-header{
     box-shadow: 0 3px 10px 2px rgba(0, 0, 0, 0.15);
@@ -171,29 +171,59 @@ input[type="search"]::-webkit-input-placeholder{
     color: #E59E80;   
 }
 
-/*jssor slider loading skin spin css*/
-.jssorl-009-spin img {
-    animation-name: jssorl-009-spin;
-    animation-duration: 1.6s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+/*Home page area start*/
+.home_header{
+    text-align: center;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition-duration: 500ms;
+    color: #191919 !important;
 }
 
-@keyframes jssorl-009-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+.home_header:hover{
+    color: #E59E80;
 }
 
-/*jssor slider bullet skin 057 css*/
-.jssorb057 .i {position:absolute;cursor:pointer;}
-.jssorb057 .i .b {fill:none;stroke:#fff;stroke-width:2000;stroke-miterlimit:10;stroke-opacity:0.4;}
-.jssorb057 .i:hover .b {stroke-opacity:.7;}
-.jssorb057 .iav .b {stroke-opacity: 1;}
-.jssorb057 .i.idn {opacity:.3;}
+.home_images{
+    box-sizing: border-box;
+}
 
-/*jssor slider arrow skin 073 css*/
-.jssora073 {display:block;position:absolute;cursor:pointer;}
-.jssora073 .a {fill:#ddd;fill-opacity:.7;stroke:#000;stroke-width:160;stroke-miterlimit:10;stroke-opacity:.7;}
-.jssora073:hover {opacity:.8;}
-.jssora073.jssora073dn {opacity:.4;}
-.jssora073.jssora073ds {opacity:.3;pointer-events:none;}
+.home_images {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+.home_images .column {
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+}
+
+.home_images .column img {
+    margin-top: 8px;
+    vertical-align: middle;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+    .home_images .column {
+        -ms-flex: 50%;
+        flex: 50%;
+        max-width: 50%;
+    }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .home_images .column {
+        -ms-flex: 100%;
+        flex: 100%;
+        max-width: 100%;
+    }
+}
+
+/*Home page area end*/
